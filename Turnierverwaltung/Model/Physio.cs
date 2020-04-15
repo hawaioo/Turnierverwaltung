@@ -59,6 +59,53 @@ namespace Turnierverwaltung.Model
             throw new NotImplementedException();
         }
 
+        public override int compareByAlter(Person p)
+        {
+
+            if (this.Alter > p.Alter)
+            {
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Alter < p.Alter)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+
+            return 0;
+        }
+
+        public override int compareByGeschlecht(Person p)
+        {
+
+            if (this.Geschlecht == true && p.Geschlecht != true)
+            {
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Geschlecht != true && p.Geschlecht == true)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+            return 0;
+        }
+
         #endregion
     }
 }

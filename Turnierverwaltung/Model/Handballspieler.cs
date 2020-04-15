@@ -10,13 +10,11 @@ namespace Turnierverwaltung.Model
         #region Eigenschaften
         private int _id;
         private string _Position;
-        int _erfolge;
         #endregion
 
         #region Accessoren/Modifier
         public int ID { get => _id; set => _id = value; }
         public string Position { get => _Position; set => _Position = value; }
-        public int Erfolge { get => _erfolge; set => _erfolge = value; }
         #endregion
 
         #region Konstruktoren
@@ -25,21 +23,18 @@ namespace Turnierverwaltung.Model
         {
             ID = 1;
             Position = "Torwart";
-            Erfolge = 0;
         }
         // Spezialkonstruktor
-        public Handballspieler(string name, int alter, bool geschlecht, int id, string sportart, string position, int erfolge, int anzahlSpiele) : base(sportart, anzahlSpiele, name, alter, geschlecht)
+        public Handballspieler(string name, int alter, bool geschlecht, int id, string sportart, string position, int erfolge) : base(sportart, name, alter, geschlecht, erfolge)
         {
             ID = id;
             Position = position;
-            Erfolge = erfolge;
         }
         // Kopierkonstruktor
         public Handballspieler(Handballspieler value) : base(value)
         {
             ID = value.ID;
             Position = value.Position;
-            Erfolge = value.Erfolge;
         }
         #endregion
 
@@ -47,33 +42,6 @@ namespace Turnierverwaltung.Model
         public void meineID()
         {
             Console.WriteLine(ID);
-        }
-
-        public override int compareByErfolg(Spieler s)
-        {
-            Handballspieler t = (Handballspieler)s;
-
-            if (this.Erfolge > t.Erfolge)
-            {
-                // mehr geschossen
-                return 1;
-            }
-            else
-            {
-
-            }
-
-            if (this.Erfolge < t.Erfolge)
-            {
-                return -1;
-            }
-            else
-            {
-
-            }
-
-            return 0;
-            throw new NotImplementedException();
         }
 
         public override int compareByName(Person t)
@@ -94,6 +62,53 @@ namespace Turnierverwaltung.Model
             return 0;
 
             throw new NotImplementedException();
+        }
+
+        public override int compareByAlter(Person p)
+        {
+
+            if (this.Alter > p.Alter)
+            {
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Alter < p.Alter)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+
+            return 0;
+        }
+
+        public override int compareByGeschlecht(Person p)
+        {
+
+            if (this.Geschlecht == true && p.Geschlecht != true)
+            {
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Geschlecht != true && p.Geschlecht == true)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+            return 0;
         }
 
         #endregion

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Turnierverwaltung;
+using Turnierverwaltung.Model;
 
 namespace WebManschaftsverwaltung.View
 {
@@ -17,11 +18,12 @@ namespace WebManschaftsverwaltung.View
         protected void Page_Init(object sender, EventArgs e)
         {
             Kontroller = Global.Kontroller;
+            BefuelleTabelle();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void RolleBestaetigen(object sender, EventArgs e)
@@ -29,132 +31,50 @@ namespace WebManschaftsverwaltung.View
             string selectedValue = RadioButtonList6.SelectedValue;
             if (selectedValue != "")
             {
-                Label LabelID = new Label
+               foreach(Control c in text_inputs.Controls)
                 {
-                    Text = "Spieler-ID: "
-                };
-
-                TextBox textBoxID = new TextBox
-                {
-                    ID = "TextBoxID",
-                };
-                textBoxID.Attributes.Add("runat", "server");
-
-                Label LabelSportArt = new Label
-                {
-                    Text = "Sportart: "
-                };
-
-                TextBox textBoxSportArt = new TextBox
-                {
-                    ID = "TextBoxSportArt",
-                };
-
-                textBoxSportArt.Attributes.Add("runat", "server");
-
-                Label LabelPosition = new Label
-                {
-                    Text = "Position: "
-                };
-
-                TextBox textBoxPosition = new TextBox
-                {
-                    ID = "TextBoxPosition",
-                };
-                textBoxPosition.Attributes.Add("runat", "server");
-
-                Label LabelErfolge = new Label
-                {
-                    Text = "Erfolge:  ",
-                };
-
-                TextBox textBoxErfolge = new TextBox
-                {
-                    ID = "TextBoxErfolge",
-                };
-
-                textBoxErfolge.Attributes.Add("runat", "server");
-
-                Label LabelDauer = new Label
-                {
-                    Text = "Beschäftigungsdauer:  ",
-                };
-
-                TextBox textBoxDauer = new TextBox
-                {
-                    ID = "TextBoxDauer",
-                };
-
-                textBoxDauer.Attributes.Add("runat", "server");
-
-
-                Label LabelGeschwindigkeit = new Label
-                {
-                    Text = "Aufschlaggeschwindigkeit",
-                };
-
-
-                TextBox textBoxGeschwindigkeit = new TextBox
-                {
-                    ID = "TextBoxGeschwindigkeit",
-                };
-
-                textBoxGeschwindigkeit.Attributes.Add("runat", "server");
-
-
-                Label LabelGehalt = new Label
-                {
-                    Text = "Gehalt",
-                };
-
-
-                TextBox textBoxGehalt = new TextBox
-                {
-                    ID = "TextBoxGehallt",
-                };
-
-                textBoxGehalt.Attributes.Add("runat", "server");
+                    c.Visible = false;
+                }
 
                 switch (selectedValue)
                 {
-
                     case "Handballspieler":
-                        text_inputs.Controls.Add(LabelID);
-                        text_inputs.Controls.Add(textBoxID);
-                        text_inputs.Controls.Add(LabelSportArt);
-                        text_inputs.Controls.Add(textBoxSportArt);
-                        text_inputs.Controls.Add(LabelPosition);
-                        text_inputs.Controls.Add(textBoxPosition);
-                        text_inputs.Controls.Add(LabelErfolge);
-                        text_inputs.Controls.Add(textBoxErfolge);
+                        LabelID.Visible = true;
+                        TextBoxID.Visible = true;
+                        LabelSportArt.Visible = true;
+                        TextBoxSportArt.Visible = true;
+                        LabelPosition.Visible = true;
+                        TextBoxPosition.Visible = true;
+                        LabelErfolge.Visible = true;
+                        TextBoxErfolge.Visible = true;
                         break;
                     case "Fussballspieler":
-                        text_inputs.Controls.Add(LabelID);
-                        text_inputs.Controls.Add(textBoxID);
-                        text_inputs.Controls.Add(LabelSportArt);
-                        text_inputs.Controls.Add(textBoxSportArt);
-                        text_inputs.Controls.Add(LabelPosition);
-                        text_inputs.Controls.Add(textBoxPosition);
-                        text_inputs.Controls.Add(LabelErfolge);
-                        text_inputs.Controls.Add(textBoxErfolge);
+                        LabelID.Visible = true;
+                        TextBoxID.Visible = true;
+                        LabelSportArt.Visible = true;
+                        TextBoxSportArt.Visible = true;
+                        LabelPosition.Visible = true;
+                        TextBoxPosition.Visible = true;
+                        LabelErfolge.Visible = true;
+                        TextBoxErfolge.Visible = true;
                         break;
                     case "Tennisspieler":
-                        text_inputs.Controls.Add(LabelID);
-                        text_inputs.Controls.Add(textBoxID);
-                        text_inputs.Controls.Add(LabelSportArt);
-                        text_inputs.Controls.Add(textBoxSportArt);
-                        text_inputs.Controls.Add(LabelGeschwindigkeit);
-                        text_inputs.Controls.Add(textBoxGeschwindigkeit);
-                        text_inputs.Controls.Add(LabelErfolge);
-                        text_inputs.Controls.Add(textBoxErfolge);
+                        LabelID.Visible = true;
+                        TextBoxID.Visible = true;
+                        LabelSportArt.Visible = true;
+                        TextBoxSportArt.Visible = true;
+                        LabelGeschwindigkeit.Visible = true;
+                        TextBoxGeschwindigkeit.Visible = true;
+                        LabelErfolge.Visible = true;
+                        TextBoxErfolge.Visible = true;
                         break;
                     case "Trainer":
-                        text_inputs.Controls.Add(LabelDauer);
-                        text_inputs.Controls.Add(textBoxDauer);
+                        LabelDauer.Visible = true;
+                        TextBoxDauer.Visible = true;
                         break;
                     case "Physiotherapeut":
-                        text_inputs.Controls.Add(LabelGehalt);
-                        text_inputs.Controls.Add(textBoxGehalt);
+                        LabelGehalt.Visible = true;
+                        TextBoxGehalt.Visible = true;
                         break;
                     default:
                         break;
@@ -171,16 +91,255 @@ namespace WebManschaftsverwaltung.View
 
         protected void Anlegen(object sender, EventArgs e)
         {
-            foreach (char input in text_inputs.Controls)
-            {
-                System.Diagnostics.Debug.WriteLine(input);
-            }
-            
-
-
             string selectedValue = RadioButtonList6.SelectedValue;
-          
-            Kontroller.neuePerson(selectedValue);
+
+            int id = 0;
+            int alter = 0;
+            int erfolge = 0;
+            int aufschlaggeschwindigkeit = 0;
+            int dauer = 0;
+            int gehalt = 0;
+            bool geschlecht = false;
+
+            Int32.TryParse(TextBoxAlter.Text, out alter);
+            Int32.TryParse(TextBoxID.Text, out id);
+            Int32.TryParse(TextBoxErfolge.Text, out erfolge);
+            Int32.TryParse(TextBoxGeschwindigkeit.Text, out aufschlaggeschwindigkeit);
+            Int32.TryParse(TextBoxDauer.Text, out dauer);
+            Int32.TryParse(TextBoxGehalt.Text, out gehalt);
+
+            if (TextBoxGeschlecht.Text[0] == "M"[0] || TextBoxGeschlecht.Text[0] == "m"[0])
+            {
+                geschlecht = true;
+            }
+
+            switch (selectedValue)
+            {
+                case "Handballspieler":
+                    Kontroller.neuerHandballSpieler(TextBoxName.Text, alter, geschlecht, id, TextBoxSportArt.Text, TextBoxPosition.Text, erfolge);
+                    break;
+                case "Fussballspieler":
+                    Kontroller.neuerHandballSpieler(TextBoxName.Text, alter, geschlecht, id, TextBoxSportArt.Text, TextBoxPosition.Text, erfolge);
+                    break;
+                case "Tennisspieler":
+                    Kontroller.neuerTennisspieler(TextBoxName.Text, alter, geschlecht, id, TextBoxSportArt.Text, aufschlaggeschwindigkeit, erfolge);
+                    break;
+                case "Trainer":
+                    Kontroller.neuerTrainer(TextBoxName.Text, alter, geschlecht, dauer);
+                    break;
+                case "Physiotherapeut":
+                    Kontroller.neuerPhysio(TextBoxName.Text, alter, geschlecht, gehalt);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        protected void sortName(object sender, EventArgs e)
+        {
+            Kontroller.sortName();
+        }
+
+        protected void sortAlter(object sender, EventArgs e)
+        {
+            Kontroller.sortAlter();
+        }
+
+        protected void sortGeschlecht(object sender, EventArgs e)
+        {
+            Kontroller.sortGeschlecht();
+        }
+
+        protected void sortSpielerID(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("This is a log");
+        }
+        protected void sortSpeed(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("This is a log");
+        }
+        protected void sortErfolge(object sender, EventArgs e)
+        {
+            Kontroller.sortErfolge();
+        }
+
+        protected void sortGehalt(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("This is a log");
+        }
+
+        protected void sortDauer(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("This is a log");
+        }
+
+        private void BefuelleTabelle()
+        {
+            foreach (Person p in this.Kontroller.Personen)
+            {
+                TableRow r = new TableRow();
+                TableCell c = new TableCell();
+
+                c.Text = p.GetType().Name;
+                r.Cells.Add(c);
+
+                c = new TableCell();
+                c.Text = p.Name;
+                r.Cells.Add(c);
+
+                c = new TableCell();
+                c.Text = p.Alter.ToString();
+                r.Cells.Add(c);
+
+                string Geschlecht = "weiblich";
+                if (p.Geschlecht == true)
+                {
+                    Geschlecht = "männlich";
+                }
+                c = new TableCell();
+                c.Text = Geschlecht;
+                r.Cells.Add(c);
+
+                c = new TableCell();
+                c.Text = getSportArt(p);
+                r.Cells.Add(c);
+
+                c = new TableCell();
+                c.Text = getSpielerID(p);
+                r.Cells.Add(c);
+
+                c = new TableCell();
+                c.Text = getPosition(p);
+                r.Cells.Add(c);
+
+                c = new TableCell();
+                c.Text = getAufschlaggeschwindigkeit(p);
+                r.Cells.Add(c);
+
+                c = new TableCell();
+                c.Text = getErfolge(p);
+                r.Cells.Add(c);
+
+                c = new TableCell();
+                c.Text = getGehalt(p);
+                r.Cells.Add(c);
+
+                c = new TableCell();
+                c.Text = getDauer(p);
+                r.Cells.Add(c);
+
+                Table1.Rows.Add(r);
+            }
+        }
+
+        private string getSportArt(Person p)
+        {
+            if(p is Handballspieler)
+            {
+                return ((Handballspieler)p).Sportart;
+            }
+            else if (p is Tennisspieler)
+            {
+                return ((Tennisspieler)p).Sportart;
+            }
+            else if (p is Fussballspieler)
+            {
+                return ((Fussballspieler)p).Sportart;
+            }
+            else
+            {
+                return "N/A";
+            }
+        }
+
+        private string getSpielerID(Person p)
+        {
+            if(p is Fussballspieler)
+            {
+                return ((Fussballspieler)p).ID.ToString();
+            } 
+            else if(p is Handballspieler)
+            {
+                return ((Handballspieler)p).ID.ToString();
+            } 
+            else if(p is Tennisspieler)
+            {
+                return ((Tennisspieler)p).ID.ToString();
+            } else
+            {
+                return "N/A";
+            }
+        }
+
+        private string getPosition(Person p)
+        {
+            if(p is Fussballspieler)
+            {
+                return ((Fussballspieler)p).Position;
+            }
+            else if(p is Handballspieler)
+            {
+                return ((Handballspieler)p).Position;
+            } 
+            else
+            {
+                return "N/A";
+            }
+        }
+
+        private string getAufschlaggeschwindigkeit(Person p)
+        {
+            if(p is Tennisspieler)
+            {
+                return ((Tennisspieler)p).AufschlagGeschwindigkeit.ToString() + " km/h";
+            } 
+            else
+            {
+                return "N/A";
+            }
+        }
+
+        private string getErfolge(Person p)
+        {
+            if(p is Tennisspieler)
+            {
+                return ((Tennisspieler)p).Erfolge.ToString();
+            } 
+            else if(p is Handballspieler)
+            {
+                return ((Handballspieler)p).Erfolge.ToString();
+            }
+            else if(p is Handballspieler)
+            {
+                return ((Handballspieler)p).Erfolge.ToString();
+            }
+            else
+            {
+                return "N/A";
+            }
+        }
+
+        private string getGehalt(Person p)
+        {
+            if (p is Physio)
+            {
+                return ((Physio)p).Gehalt.ToString() + " €";
+            }
+            else
+            {
+                return "N/A";
+            }
+        }
+        private string getDauer(Person p)
+        {
+            if (p is Trainer)
+            {
+                return ((Trainer)p).Beschaeftigungsdauer.ToString() + " Jahre";
+            }
+            else
+            {
+                return "N/A";
+            }
         }
     }
 }

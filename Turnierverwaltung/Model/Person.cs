@@ -49,6 +49,9 @@ namespace Turnierverwaltung.Model
         #region Workers
         public abstract int compareByName(Person p);
 
+        public abstract int compareByAlter(Person p);
+
+        public abstract int compareByGeschlecht(Person p);
         #endregion
     }
 }

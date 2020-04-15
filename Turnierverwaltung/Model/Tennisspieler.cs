@@ -10,12 +10,10 @@ namespace Turnierverwaltung.Model
         #region Eigenschaften
         private int _id;
         private int _aufschlagGeschwindigkeit;
-        int _erfolge;
         #endregion
 
         #region Accessoren/Modifier
         public int ID { get => _id; set => _id = value; }
-        public int Erfolge { get => _erfolge; set => _erfolge = value; }
         public int AufschlagGeschwindigkeit { get => _aufschlagGeschwindigkeit; set => _aufschlagGeschwindigkeit = value; }
         #endregion
 
@@ -25,21 +23,18 @@ namespace Turnierverwaltung.Model
         {
             ID = 1;
             AufschlagGeschwindigkeit = 120;
-            Erfolge = 0;
         }
         // Spezialkonstruktor
-        public Tennisspieler(string name, int alter, bool geschlecht, int id, string sportart, int aufschlagGeschwindigkeit, int erfolge, int anzahlSpiele) : base(sportart, anzahlSpiele, name, alter, geschlecht)
+        public Tennisspieler(string name, int alter, bool geschlecht, int id, string sportart, int aufschlagGeschwindigkeit, int erfolge) : base(sportart, name, alter, geschlecht, erfolge)
         {
             ID = id;
             AufschlagGeschwindigkeit = aufschlagGeschwindigkeit;
-            Erfolge = erfolge;
         }
         // Kopierkonstruktor
         public Tennisspieler(Tennisspieler value) : base(value)
         {
             ID = value.ID;
             AufschlagGeschwindigkeit = value.AufschlagGeschwindigkeit;
-            Erfolge = value.Erfolge;
         }
         #endregion
 
@@ -49,32 +44,6 @@ namespace Turnierverwaltung.Model
             Console.WriteLine(ID);
         }
 
-        public override int compareByErfolg(Spieler s)
-        {
-            Tennisspieler t = (Tennisspieler)s;
-
-            if (this.Erfolge > t.Erfolge)
-            {
-                // mehr gewonnen
-                return 1;
-            }
-            else
-            {
-
-            }
-
-            if (this.Erfolge < t.Erfolge)
-            {
-                return -1;
-            }
-            else
-            {
-
-            }
-
-            return 0;
-            throw new NotImplementedException();
-        }
 
         public override int compareByName(Person t)
         {
@@ -94,6 +63,54 @@ namespace Turnierverwaltung.Model
             return 0;
 
             throw new NotImplementedException();
+        }
+
+        public override int compareByAlter(Person p)
+        {
+
+            if (this.Alter > p.Alter)
+            {
+                // mehr geschossen
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Alter < p.Alter)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+
+            return 0;
+        }
+
+        public override int compareByGeschlecht(Person p)
+        {
+
+            if (this.Geschlecht == true && p.Geschlecht != true)
+            {
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Geschlecht != true && p.Geschlecht == true)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+            return 0;
         }
 
         #endregion

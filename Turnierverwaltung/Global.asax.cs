@@ -12,7 +12,6 @@ namespace Turnierverwaltung
     public class Global : HttpApplication
     {
         private static Verwalter _kontroller;
-
         public static Verwalter Kontroller { get => _kontroller; set => _kontroller = value; }
 
         void Application_Start(object sender, EventArgs e)

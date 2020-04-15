@@ -8,16 +8,14 @@ namespace Turnierverwaltung.Model
     class Fussballspieler : Spieler
     {
         #region Eigenschaften
-        private int _fussballspielerId;
-        int _erfolge;
+        private int _id;
         string _position;
 
         #endregion
 
         #region Accessoren/Modifier
-        public int FussballspielerId { get => _fussballspielerId; set => _fussballspielerId = value; }
+        public int ID { get => _id; set => _id = value; }
 
-        public int Erfolge { get => _erfolge; set => _erfolge = value; }
         public string Position { get => _position; set => _position = value; }
         #endregion
 
@@ -25,22 +23,19 @@ namespace Turnierverwaltung.Model
         // Standardkonstruktor
         public Fussballspieler() : base()
         {
-            FussballspielerId = 1;
-            Erfolge = 0;
+            ID = 1;
             Position = "Torwart";
         }
         // Spezialkonstruktor
-        public Fussballspieler(string name, int alter, bool geschlecht, int anzahlSpiele, string position, int id, string sportart, int erfolge) : base(sportart, anzahlSpiele, name, alter, geschlecht)
+        public Fussballspieler(string name, int alter, bool geschlecht, string position, int id, string sportart, int erfolge) : base(sportart, name, alter, geschlecht, erfolge)
         {
-            FussballspielerId = id;
-            Erfolge = erfolge;
+            ID = id;
             Position = position;
         }
         // Kopierkonstruktor
         public Fussballspieler(Fussballspieler value) : base(value)
         {
-            FussballspielerId = value.FussballspielerId;
-            Erfolge = value.Erfolge;
+            ID = value.ID;
             Position = value.Position;
         }
         #endregion
@@ -48,35 +43,9 @@ namespace Turnierverwaltung.Model
         #region Worker
         public void meineID()
         {
-            Console.WriteLine(FussballspielerId);
+            Console.WriteLine(ID);
         }
 
-        public override int compareByErfolg(Spieler s)
-        {
-            Fussballspieler t = (Fussballspieler)s;
-
-            if (this.Erfolge > t.Erfolge)
-            {
-                // mehr geschossen
-                return 1;
-            }
-            else
-            {
-
-            }
-
-            if (this.Erfolge < t.Erfolge)
-            {
-                return -1;
-            }
-            else
-            {
-
-            }
-
-            return 0;
-            throw new NotImplementedException();
-        }
 
         public override int compareByName(Person t)
         {
@@ -94,8 +63,53 @@ namespace Turnierverwaltung.Model
                 return -1;
             }
             return 0;
+        }
 
-            throw new NotImplementedException();
+        public override int compareByAlter(Person p)
+        {
+            if (this.Alter > p.Alter)
+            {
+                // mehr geschossen
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Alter < p.Alter)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+
+            return 0;
+        }
+
+        public override int compareByGeschlecht(Person p)
+        {
+
+            if (this.Geschlecht == true && p.Geschlecht != true)
+            {
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Geschlecht != true && p.Geschlecht == true)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+            return 0;
         }
 
         #endregion

@@ -14,28 +14,128 @@ namespace Turnierverwaltung
 
         public Verwalter()
         {
-            Fussballspieler s = new Fussballspieler();
-
+            Personen = new List<Person>();
         }
 
-        public void neuePerson(string Rolle)
+        public void neuerFussballSpieler(string name, int alter, bool geschlecht, int id, string sportart, string position, int erfolge)
         {
-            switch (Rolle)
+            //Param order string name, int alter, bool geschlecht, int anzahlSpiele, string position, int id, string sportart, int erfolge) 
+            this.Personen.Add(new Fussballspieler(name, alter, geschlecht, position, id, sportart, erfolge));
+        }
+
+        public void neuerHandballSpieler(string name, int alter, bool geschlecht, int id, string sportart, string position, int erfolge)
+        {
+            //Param order string name, int alter, bool geschlecht, int id, string sportart, string position, int erfolge, int anzahlSpiele
+            this.Personen.Add(new Handballspieler(name, alter, geschlecht, id, sportart, position, erfolge));
+        }
+
+        public void neuerTennisspieler(string name, int alter, bool geschlecht, int id, string sportart, int aufschlaggeschwindigkeit, int erfolge)
+        {
+            //Param order string name, int alter, bool geschlecht, int id, string sportart, int aufschlagGeschwindigkeit, int erfolge, int anzahlSpiele
+            this.Personen.Add(new Tennisspieler(name, alter, geschlecht, id, sportart, aufschlaggeschwindigkeit, erfolge));
+        }
+
+        public void neuerTrainer(string name, int alter, bool geschlecht, int dauer)
+        {
+            this.Personen.Add(new Trainer(name, alter, geschlecht, dauer));
+        }
+
+        public void neuerPhysio(string name, int alter, bool geschlecht, int gehalt)
+        {
+            this.Personen.Add(new Physio(name, alter, geschlecht, gehalt));
+        }
+
+        public void sortName()
+        {
+            for(int i = 0; i < Personen.Count; i++)
             {
-                case "Handballspieler":
-                    Personen.Add(new Handballspieler());
-                    break;
-                case "Fussballspieler":
-                    break;
-                case "Tennisspieler":
-                    break;
-                case "Trainer":
-                    break;
-                case "Physiotherapeut":
-                    break;
-                default:
-                    break;
+                // aufsteigend
+                if(Personen[i].compareByName(Personen[i + 1]) == 1)
+                {
+                    Person temp = Personen[i];
+                    Personen[i] = Personen[i + 1];
+                    Personen[i + 1] = temp;
+                } 
+                else
+                {
+                    //
+                }
             }
+        }
+
+        public void sortAlter()
+        {
+            for (int i = 0; i < Personen.Count -1; i++)
+            {
+                // aufsteigend
+                if (Personen[i].compareByAlter(Personen[i + 1]) == 1)
+                {
+                    Person temp = Personen[i];
+                    Personen[i] = Personen[i + 1];
+                    Personen[i + 1] = temp;
+                }
+                else
+                {
+                    //
+                }
+            }
+        }
+
+        public void sortGeschlecht()
+        {
+            for (int i = 0; i < Personen.Count -1; i++)
+            {
+                // aufsteigend
+                if (Personen[i].compareByGeschlecht(Personen[i + 1]) == 1)
+                {
+                    Person temp = Personen[i];
+                    Personen[i] = Personen[i + 1];
+                    Personen[i + 1] = temp;
+                }
+                else
+                {
+                    //
+                }
+            }
+        }
+
+        public void sortErfolge()
+        {
+            List<Person> tempList = new List<Person>();
+
+            for (int i = 0; i < Personen.Count -1; i++)
+            {
+                if(Personen[i] is Spieler)
+                {
+                    tempList.Add(Personen[i]);
+                } else
+                {
+                    
+                }
+            }
+
+            for(int i = 0; i < tempList.Count -1; i++)
+            {
+                if (((Spieler)Personen[i]).compareByErfolg(((Spieler)Personen[i + 1])) == 1)
+                {
+                    Person temp = Personen[i];
+                    Personen[i] = Personen[i + 1];
+                    Personen[i + 1] = temp;
+                }
+            }
+
+            for(int i = 0; i < Personen.Count -1; i++)
+            {
+                if(Personen[i] is Spieler)
+                {
+
+                }
+                else
+                {
+                    tempList.Add(Personen[i]);
+                }
+            }
+            Personen = tempList;
         }
 
         public void generateTable()

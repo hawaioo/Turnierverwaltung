@@ -9,14 +9,12 @@ namespace Turnierverwaltung.Model
     {
         #region Eigenschaften
         string _sportart;
-        int _anzahlSpiele;
-
-
+        int _erfolge;
         #endregion
 
         #region Accessoren/Modifier
         public string Sportart { get => _sportart; set => _sportart = value; }
-        public int AnzahlSpiele { get => _anzahlSpiele; set => _anzahlSpiele = value; }
+        public int Erfolge { get => _erfolge; set => _erfolge = value; }
         #endregion
 
         #region Konstruktoren
@@ -25,23 +23,45 @@ namespace Turnierverwaltung.Model
         {
             Alter = 18;
             Geschlecht = false;
+            Erfolge = 0;
         }
         // Spezialkonstruktor
-        public Spieler(string sa, int anzahlSpiele, string name, int alter, bool geschlecht) : base(name, alter, geschlecht)
+        public Spieler(string sa, string name, int alter, bool geschlecht, int erfolge) : base(name, alter, geschlecht)
         {
             Sportart = sa;
-            AnzahlSpiele = anzahlSpiele;
+            Erfolge = erfolge;
         }
         // Kopierkonstruktor
         public Spieler(Spieler value) : base(value)
         {
             Sportart = value.Sportart;
-            AnzahlSpiele = value.AnzahlSpiele;
+            Erfolge = value.Erfolge;
         }
         #endregion
 
         #region Workers
-        public abstract int compareByErfolg(Spieler s);
+        public int compareByErfolg(Spieler s)
+        {
+            if (this.Erfolge > s.Erfolge)
+            {
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Erfolge < s.Erfolge)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+
+            return 0;
+        }
         #endregion
     }
 }
