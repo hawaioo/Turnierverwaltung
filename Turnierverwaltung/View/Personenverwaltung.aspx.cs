@@ -43,6 +43,8 @@ namespace WebManschaftsverwaltung.View
                         TextBoxID.Visible = true;
                         LabelSportArt.Visible = true;
                         TextBoxSportArt.Visible = true;
+                        TextBoxSportArt.Text = "Handball";
+                        TextBoxSportArt.Enabled = false;
                         LabelPosition.Visible = true;
                         TextBoxPosition.Visible = true;
                         LabelErfolge.Visible = true;
@@ -53,6 +55,8 @@ namespace WebManschaftsverwaltung.View
                         TextBoxID.Visible = true;
                         LabelSportArt.Visible = true;
                         TextBoxSportArt.Visible = true;
+                        TextBoxSportArt.Text = "Fussball";
+                        TextBoxSportArt.Enabled = false;
                         LabelPosition.Visible = true;
                         TextBoxPosition.Visible = true;
                         LabelErfolge.Visible = true;
@@ -62,6 +66,8 @@ namespace WebManschaftsverwaltung.View
                         LabelID.Visible = true;
                         TextBoxID.Visible = true;
                         LabelSportArt.Visible = true;
+                        TextBoxSportArt.Text = "Tennis";
+                        TextBoxSportArt.Enabled = false;
                         TextBoxSportArt.Visible = true;
                         LabelGeschwindigkeit.Visible = true;
                         TextBoxGeschwindigkeit.Visible = true;
@@ -117,15 +123,12 @@ namespace WebManschaftsverwaltung.View
             switch (selectedValue)
             {
                 case "Handball":
-                    TextBoxSportArt.Text = "Handballspieler";
                     Kontroller.neuerHandballSpieler(TextBoxName.Text, alter, geschlecht, id, "Handball", TextBoxPosition.Text, erfolge);
                     break;
                 case "Fussball":
-                    TextBoxSportArt.Text = "Fussballspieler";
                     Kontroller.neuerHandballSpieler(TextBoxName.Text, alter, geschlecht, id, "Fussball", TextBoxPosition.Text, erfolge);
                     break;
                 case "Tennis":
-                    TextBoxSportArt.Text = "Tennisspieler";
                     Kontroller.neuerTennisspieler(TextBoxName.Text, alter, geschlecht, id, "Tennis", aufschlaggeschwindigkeit, erfolge);
                     break;
                 case "Trainer":
@@ -157,10 +160,11 @@ namespace WebManschaftsverwaltung.View
 
         protected void sortSpielerID(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("This is a log");
+            Kontroller.sortSpielerId();
         }
         protected void sortSpeed(object sender, EventArgs e)
         {
+            Kontroller.sortSpeed();
             System.Diagnostics.Debug.WriteLine("This is a log");
         }
         protected void sortErfolge(object sender, EventArgs e)
@@ -170,11 +174,13 @@ namespace WebManschaftsverwaltung.View
 
         protected void sortGehalt(object sender, EventArgs e)
         {
+            Kontroller.sortGehalt();
             System.Diagnostics.Debug.WriteLine("This is a log");
         }
 
         protected void sortDauer(object sender, EventArgs e)
         {
+            Kontroller.sortDauer();
             System.Diagnostics.Debug.WriteLine("This is a log");
         }
 
@@ -303,9 +309,9 @@ namespace WebManschaftsverwaltung.View
             {
                 return ((Handballspieler)p).Erfolge.ToString();
             }
-            else if(p is Handballspieler)
+            else if(p is Fussballspieler)
             {
-                return ((Handballspieler)p).Erfolge.ToString();
+                return ((Fussballspieler)p).Erfolge.ToString();
             }
             else
             {

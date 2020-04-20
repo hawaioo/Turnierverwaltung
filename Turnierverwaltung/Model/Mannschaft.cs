@@ -24,8 +24,8 @@ namespace Turnierverwaltung.Model
         public Mannschaft()
         {
             Name = "Test Manschaft";
-            Personen = null;
-            Sportart = "unbekannt";
+            Personen = new List<Person>();
+            Sportart = "Handball";
         }
         // Spezialkonstruktor
         public Mannschaft(List<Person> personen, string sportart, string name)

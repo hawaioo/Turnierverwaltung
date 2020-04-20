@@ -166,6 +166,7 @@ namespace WebManschaftsverwaltung.View
         private DropDownList GenerierePersonenListe(Mannschaft m)
         {
             DropDownList ddl = new DropDownList();
+            ddl.ID = "ddlID";
             switch(m.Sportart)
             {
                 case "Handball":
@@ -191,7 +192,7 @@ namespace WebManschaftsverwaltung.View
                     {
                         if (!(p is Handballspieler) && !(p is Fussballspieler))
                         {
-                            ddl.Items.Add(new ListItem($"{p.Name}, {p.Alter}, {p.GetType()}", $"{p}"));
+                            ddl.Items.Add(new ListItem($"{p.Name}, {p.Alter}, {p.GetType().Name}", $"{p}"));
                         }
                     }
                     break;

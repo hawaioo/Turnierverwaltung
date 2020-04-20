@@ -115,7 +115,7 @@ namespace Turnierverwaltung
         {
             List<Person> tempList = new List<Person>();
 
-            for (int i = 0; i < Personen.Count -1; i++)
+            for (int i = 0; i < Personen.Count; i++)
             {
                 if(Personen[i] is Spieler)
                 {
@@ -128,25 +128,167 @@ namespace Turnierverwaltung
 
             for(int i = 0; i < tempList.Count -1; i++)
             {
-                if (((Spieler)Personen[i]).compareByErfolg(((Spieler)Personen[i + 1])) == 1)
+                if (((Spieler)tempList[i]).compareByErfolg(((Spieler)tempList[i + 1])) == 1)
                 {
-                    Person temp = Personen[i];
-                    Personen[i] = Personen[i + 1];
-                    Personen[i + 1] = temp;
+                    Person temp = tempList[i];
+                    tempList[i] = tempList[i + 1];
+                    tempList[i + 1] = temp;
                 }
             }
 
-            for(int i = 0; i < Personen.Count -1; i++)
+            for(int i = 0; i < Personen.Count; i++)
             {
-                if(Personen[i] is Spieler)
-                {
-
-                }
-                else
+                if(!(Personen[i] is Spieler))
                 {
                     tempList.Add(Personen[i]);
                 }
+                else
+                {
+                    
+                }
             }
+            Personen = tempList;
+        }
+
+        public void sortGehalt()
+        {
+            List<Person> tempList = new List<Person>();
+
+            for (int i = 0; i < Personen.Count; i++)
+            {
+                if (Personen[i] is Physio)
+                {
+                    tempList.Add(Personen[i]);
+                }
+                else
+                {
+
+                }
+            }
+
+            if (tempList.Count < 2)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < tempList.Count - 1; i++)
+                {
+                    if (((Physio)tempList[i]).compareByGehalt(((Physio)tempList[i + 1])) == 1)
+                    {
+                        Person temp = tempList[i];
+                        tempList[i] = tempList[i + 1];
+                        tempList[i + 1] = temp;
+                    }
+                }
+            }
+            for (int i = 0; i < Personen.Count; i++)
+            {
+                if (!(Personen[i] is Physio))
+                {
+                    tempList.Add(Personen[i]);
+                }
+                else
+                {
+
+                }
+            }
+            Personen = tempList;
+
+        }
+
+        public void sortDauer()
+        {
+            List<Person> tempList = new List<Person>();
+
+            for (int i = 0; i < Personen.Count; i++)
+            {
+                if (Personen[i] is Trainer)
+                {
+                    tempList.Add(Personen[i]);
+                }
+                else
+                {
+
+                }
+            }
+
+            if (tempList.Count < 2)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < tempList.Count - 1; i++)
+                {
+                    if (((Trainer)tempList[i]).compareByDauer(((Trainer)tempList[i + 1])) == 1)
+                    {
+                        Person temp = tempList[i];
+                        tempList[i] = tempList[i + 1];
+                        tempList[i + 1] = temp;
+                    }
+                }
+            }
+
+            for (int i = 0; i < Personen.Count; i++)
+            {
+                if (!(Personen[i] is Trainer))
+                {
+                    tempList.Add(Personen[i]);
+                }
+                else
+                {
+
+                }
+            }
+            Personen = tempList;
+        }
+
+        public void sortSpeed()
+        {
+            List<Person> tempList = new List<Person>();
+
+            for (int i = 0; i < Personen.Count; i++)
+            {
+                if (Personen[i] is Tennisspieler)
+                {
+                    tempList.Add(Personen[i]);
+                }
+                else
+                {
+
+                }
+            }
+
+            if (tempList.Count < 2)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < tempList.Count - 1; i++)
+                {
+                    if (((Tennisspieler)tempList[i]).compareBySpeed(((Tennisspieler)tempList[i + 1])) == 1)
+                    {
+                        Person temp = tempList[i];
+                        tempList[i] = tempList[i + 1];
+                        tempList[i + 1] = temp;
+                    }
+                }
+            }
+
+            for (int i = 0; i < Personen.Count; i++)
+            {
+                if (!(Personen[i] is Tennisspieler))
+                {
+                    tempList.Add(Personen[i]);
+                }
+                else
+                {
+
+                }
+            }
+
             Personen = tempList;
         }
 
@@ -154,7 +296,7 @@ namespace Turnierverwaltung
         {
             List<Person> tempList = new List<Person>();
 
-            for (int i = 0; i < Personen.Count - 1; i++)
+            for (int i = 0; i < Personen.Count; i++)
             {
                 if (Personen[i] is Spieler)
                 {
@@ -168,23 +310,23 @@ namespace Turnierverwaltung
 
             for (int i = 0; i < tempList.Count - 1; i++)
             {
-                if (((Spieler)Personen[i]).compareByErfolg(((Spieler)Personen[i + 1])) == 1)
+                if (((Spieler)tempList[i]).compareBySpielerId(((Spieler)tempList[i + 1])) == 1)
                 {
-                    Person temp = Personen[i];
-                    Personen[i] = Personen[i + 1];
-                    Personen[i + 1] = temp;
+                    Person temp = tempList[i];
+                    tempList[i] = tempList[i + 1];
+                    tempList[i + 1] = temp;
                 }
             }
 
-            for (int i = 0; i < Personen.Count - 1; i++)
+            for (int i = 0; i < Personen.Count; i++)
             {
-                if (Personen[i] is Spieler)
+                if (!(Personen[i] is Spieler))
                 {
-
+                    tempList.Add(Personen[i]);
                 }
                 else
                 {
-                    tempList.Add(Personen[i]);
+
                 }
             }
             Personen = tempList;

@@ -59,6 +59,30 @@ namespace Turnierverwaltung.Model
             throw new NotImplementedException();
         }
 
+        public int compareByGehalt(Physio p)
+        {
+
+            if (this.Gehalt > p.Gehalt)
+            {
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Gehalt < p.Gehalt)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+
+            return 0;
+        }
+
         public override int compareByAlter(Person p)
         {
 

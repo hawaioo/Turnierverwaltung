@@ -108,6 +108,30 @@ namespace Turnierverwaltung.Model
             return 0;
         }
 
+        public int compareBySpeed(Tennisspieler t)
+        {
+            if (this.AufschlagGeschwindigkeit > t.AufschlagGeschwindigkeit)
+            {
+                // mehr geschossen
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.AufschlagGeschwindigkeit < t.AufschlagGeschwindigkeit)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+
+            return 0;
+        }
+
         #endregion
     }
 }

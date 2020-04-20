@@ -83,6 +83,30 @@ namespace Turnierverwaltung.Model
             return 0;
         }
 
+        public int compareByDauer(Trainer t)
+        {
+
+            if (this.Beschaeftigungsdauer > t.Beschaeftigungsdauer)
+            {
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Beschaeftigungsdauer > t.Beschaeftigungsdauer)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
+
+            return 0;
+        }
+
         public override int compareByGeschlecht(Person p)
         {
 
