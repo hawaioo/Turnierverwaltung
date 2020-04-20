@@ -38,7 +38,7 @@ namespace WebManschaftsverwaltung.View
 
                 switch (selectedValue)
                 {
-                    case "Handballspieler":
+                    case "Handball":
                         LabelID.Visible = true;
                         TextBoxID.Visible = true;
                         LabelSportArt.Visible = true;
@@ -48,7 +48,7 @@ namespace WebManschaftsverwaltung.View
                         LabelErfolge.Visible = true;
                         TextBoxErfolge.Visible = true;
                         break;
-                    case "Fussballspieler":
+                    case "Fussball":
                         LabelID.Visible = true;
                         TextBoxID.Visible = true;
                         LabelSportArt.Visible = true;
@@ -58,7 +58,7 @@ namespace WebManschaftsverwaltung.View
                         LabelErfolge.Visible = true;
                         TextBoxErfolge.Visible = true;
                         break;
-                    case "Tennisspieler":
+                    case "Tennis":
                         LabelID.Visible = true;
                         TextBoxID.Visible = true;
                         LabelSportArt.Visible = true;
@@ -84,6 +84,7 @@ namespace WebManschaftsverwaltung.View
             else
             {
                 text_inputs.Controls.Add(new Label { Text = "Bitte eine Rolle auswählen!" });
+                Button2.Enabled = false;
                 return;
             }
 
@@ -115,14 +116,17 @@ namespace WebManschaftsverwaltung.View
 
             switch (selectedValue)
             {
-                case "Handballspieler":
-                    Kontroller.neuerHandballSpieler(TextBoxName.Text, alter, geschlecht, id, TextBoxSportArt.Text, TextBoxPosition.Text, erfolge);
+                case "Handball":
+                    TextBoxSportArt.Text = "Handballspieler";
+                    Kontroller.neuerHandballSpieler(TextBoxName.Text, alter, geschlecht, id, "Handball", TextBoxPosition.Text, erfolge);
                     break;
-                case "Fussballspieler":
-                    Kontroller.neuerHandballSpieler(TextBoxName.Text, alter, geschlecht, id, TextBoxSportArt.Text, TextBoxPosition.Text, erfolge);
+                case "Fussball":
+                    TextBoxSportArt.Text = "Fussballspieler";
+                    Kontroller.neuerHandballSpieler(TextBoxName.Text, alter, geschlecht, id, "Fussball", TextBoxPosition.Text, erfolge);
                     break;
-                case "Tennisspieler":
-                    Kontroller.neuerTennisspieler(TextBoxName.Text, alter, geschlecht, id, TextBoxSportArt.Text, aufschlaggeschwindigkeit, erfolge);
+                case "Tennis":
+                    TextBoxSportArt.Text = "Tennisspieler";
+                    Kontroller.neuerTennisspieler(TextBoxName.Text, alter, geschlecht, id, "Tennis", aufschlaggeschwindigkeit, erfolge);
                     break;
                 case "Trainer":
                     Kontroller.neuerTrainer(TextBoxName.Text, alter, geschlecht, dauer);
@@ -133,6 +137,7 @@ namespace WebManschaftsverwaltung.View
                 default:
                     break;
             }
+            Button2.Enabled = false;
         }
 
         protected void sortName(object sender, EventArgs e)
@@ -254,18 +259,11 @@ namespace WebManschaftsverwaltung.View
 
         private string getSpielerID(Person p)
         {
-            if(p is Fussballspieler)
+            if(p is Spieler)
             {
-                return ((Fussballspieler)p).ID.ToString();
+                return ((Spieler)p).Id.ToString();
             } 
-            else if(p is Handballspieler)
-            {
-                return ((Handballspieler)p).ID.ToString();
-            } 
-            else if(p is Tennisspieler)
-            {
-                return ((Tennisspieler)p).ID.ToString();
-            } else
+            else
             {
                 return "N/A";
             }
@@ -277,10 +275,6 @@ namespace WebManschaftsverwaltung.View
             {
                 return ((Fussballspieler)p).Position;
             }
-            else if(p is Handballspieler)
-            {
-                return ((Handballspieler)p).Position;
-            } 
             else
             {
                 return "N/A";

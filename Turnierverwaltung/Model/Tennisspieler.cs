@@ -8,12 +8,10 @@ namespace Turnierverwaltung.Model
     class Tennisspieler : Spieler
     {
         #region Eigenschaften
-        private int _id;
         private int _aufschlagGeschwindigkeit;
         #endregion
 
         #region Accessoren/Modifier
-        public int ID { get => _id; set => _id = value; }
         public int AufschlagGeschwindigkeit { get => _aufschlagGeschwindigkeit; set => _aufschlagGeschwindigkeit = value; }
         #endregion
 
@@ -21,27 +19,24 @@ namespace Turnierverwaltung.Model
         // Standardkonstruktor
         public Tennisspieler() : base()
         {
-            ID = 1;
             AufschlagGeschwindigkeit = 120;
         }
         // Spezialkonstruktor
-        public Tennisspieler(string name, int alter, bool geschlecht, int id, string sportart, int aufschlagGeschwindigkeit, int erfolge) : base(sportart, name, alter, geschlecht, erfolge)
+        public Tennisspieler(string name, int alter, bool geschlecht, int id, string sportart, int aufschlagGeschwindigkeit, int erfolge) : base(sportart, name, alter, geschlecht, erfolge, id)
         {
-            ID = id;
             AufschlagGeschwindigkeit = aufschlagGeschwindigkeit;
         }
         // Kopierkonstruktor
         public Tennisspieler(Tennisspieler value) : base(value)
         {
-            ID = value.ID;
             AufschlagGeschwindigkeit = value.AufschlagGeschwindigkeit;
         }
         #endregion
 
         #region Worker
-        public void meineID()
+        public void getGeschwindigkeit()
         {
-            Console.WriteLine(ID);
+            Console.WriteLine(AufschlagGeschwindigkeit);
         }
 
 

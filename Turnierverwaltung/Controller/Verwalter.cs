@@ -9,12 +9,18 @@ namespace Turnierverwaltung
 {
     public class Verwalter
     {
+        List<Mannschaft> _mannschaften;
         List<Person> _personen;
+        bool _asc;
         public List<Person> Personen { get => _personen; set => _personen = value; }
+        internal List<Mannschaft> Mannschaften { get => _mannschaften; set => _mannschaften = value; }
+        public bool Asc { get => _asc; set => _asc = value; }
 
         public Verwalter()
         {
+            Asc = true;
             Personen = new List<Person>();
+            Mannschaften = new List<Mannschaft>();
         }
 
         public void neuerFussballSpieler(string name, int alter, bool geschlecht, int id, string sportart, string position, int erfolge)
@@ -45,9 +51,15 @@ namespace Turnierverwaltung
             this.Personen.Add(new Physio(name, alter, geschlecht, gehalt));
         }
 
+        public void neueMannschaft(string name, string sportart)
+        {
+            List<Person> TempList = new List<Person>();
+            this.Mannschaften.Add(new Mannschaft(TempList, sportart, name));
+        }
+
         public void sortName()
         {
-            for(int i = 0; i < Personen.Count; i++)
+            for(int i = 0; i < Personen.Count -1; i++)
             {
                 // aufsteigend
                 if(Personen[i].compareByName(Personen[i + 1]) == 1)
@@ -127,6 +139,46 @@ namespace Turnierverwaltung
             for(int i = 0; i < Personen.Count -1; i++)
             {
                 if(Personen[i] is Spieler)
+                {
+
+                }
+                else
+                {
+                    tempList.Add(Personen[i]);
+                }
+            }
+            Personen = tempList;
+        }
+
+        public void sortSpielerId()
+        {
+            List<Person> tempList = new List<Person>();
+
+            for (int i = 0; i < Personen.Count - 1; i++)
+            {
+                if (Personen[i] is Spieler)
+                {
+                    tempList.Add(Personen[i]);
+                }
+                else
+                {
+
+                }
+            }
+
+            for (int i = 0; i < tempList.Count - 1; i++)
+            {
+                if (((Spieler)Personen[i]).compareByErfolg(((Spieler)Personen[i + 1])) == 1)
+                {
+                    Person temp = Personen[i];
+                    Personen[i] = Personen[i + 1];
+                    Personen[i + 1] = temp;
+                }
+            }
+
+            for (int i = 0; i < Personen.Count - 1; i++)
+            {
+                if (Personen[i] is Spieler)
                 {
 
                 }

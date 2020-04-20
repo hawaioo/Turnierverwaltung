@@ -8,13 +8,11 @@ namespace Turnierverwaltung.Model
     class Fussballspieler : Spieler
     {
         #region Eigenschaften
-        private int _id;
         string _position;
 
         #endregion
 
         #region Accessoren/Modifier
-        public int ID { get => _id; set => _id = value; }
 
         public string Position { get => _position; set => _position = value; }
         #endregion
@@ -23,27 +21,24 @@ namespace Turnierverwaltung.Model
         // Standardkonstruktor
         public Fussballspieler() : base()
         {
-            ID = 1;
             Position = "Torwart";
         }
         // Spezialkonstruktor
-        public Fussballspieler(string name, int alter, bool geschlecht, string position, int id, string sportart, int erfolge) : base(sportart, name, alter, geschlecht, erfolge)
+        public Fussballspieler(string name, int alter, bool geschlecht, string position, int id, string sportart, int erfolge) : base(sportart, name, alter, geschlecht, erfolge, id)
         {
-            ID = id;
             Position = position;
         }
         // Kopierkonstruktor
         public Fussballspieler(Fussballspieler value) : base(value)
         {
-            ID = value.ID;
             Position = value.Position;
         }
         #endregion
 
         #region Worker
-        public void meineID()
+        public void meinePosition()
         {
-            Console.WriteLine(ID);
+            Console.WriteLine(Position);
         }
 
 

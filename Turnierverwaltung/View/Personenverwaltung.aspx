@@ -2,9 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
    
     <asp:RadioButtonList ID="RadioButtonList6" runat="server">
-        <asp:ListItem Value="Fussballspieler">Fussballspieler</asp:ListItem>
-        <asp:ListItem Value="Tennisspieler">Tennisspieler</asp:ListItem>
-        <asp:ListItem Value="Handballspieler">Handballspieler</asp:ListItem>
+        <asp:ListItem Value="Fussball">Fussballspieler</asp:ListItem>
+        <asp:ListItem Value="Tennis">Tennisspieler</asp:ListItem>
+        <asp:ListItem Value="Handball">Handballspieler</asp:ListItem>
         <asp:ListItem Value="Trainer">Trainer</asp:ListItem>
         <asp:ListItem Value="Physiotherapeut">Physiotherapeut</asp:ListItem>
     </asp:RadioButtonList>

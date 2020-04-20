@@ -8,12 +8,10 @@ namespace Turnierverwaltung.Model
     class Handballspieler : Spieler
     {
         #region Eigenschaften
-        private int _id;
         private string _Position;
         #endregion
 
         #region Accessoren/Modifier
-        public int ID { get => _id; set => _id = value; }
         public string Position { get => _Position; set => _Position = value; }
         #endregion
 
@@ -21,27 +19,24 @@ namespace Turnierverwaltung.Model
         // Standardkonstruktor
         public Handballspieler() : base()
         {
-            ID = 1;
             Position = "Torwart";
         }
         // Spezialkonstruktor
-        public Handballspieler(string name, int alter, bool geschlecht, int id, string sportart, string position, int erfolge) : base(sportart, name, alter, geschlecht, erfolge)
+        public Handballspieler(string name, int alter, bool geschlecht, int id, string sportart, string position, int erfolge) : base(sportart, name, alter, geschlecht, erfolge, id)
         {
-            ID = id;
             Position = position;
         }
         // Kopierkonstruktor
         public Handballspieler(Handballspieler value) : base(value)
         {
-            ID = value.ID;
             Position = value.Position;
         }
         #endregion
 
         #region Worker
-        public void meineID()
+        public void meinePosition()
         {
-            Console.WriteLine(ID);
+            Console.WriteLine(Position);
         }
 
         public override int compareByName(Person t)
