@@ -70,6 +70,24 @@ namespace Turnierverwaltung.Model
 
         public int compareBySpielerId(Spieler s)
         {
+
+            if (this.Id > s.Id)
+            {
+                return 1;
+            }
+            else
+            {
+
+            }
+
+            if (this.Id < s.Id)
+            {
+                return -1;
+            }
+            else
+            {
+
+            }
             return 0;
         }
         #endregion

@@ -39,6 +39,7 @@ namespace WebManschaftsverwaltung.View
                         LabelSportArt.Visible = true;
                         TextBoxSportArt.Visible = true;
                         TextBoxSportArt.Text = "Handball";
+                        TextBoxSportArt.ReadOnly = true;
 
                         break;
                     case "Fussball":
@@ -47,6 +48,7 @@ namespace WebManschaftsverwaltung.View
                         LabelSportArt.Visible = true;
                         TextBoxSportArt.Visible = true;
                         TextBoxSportArt.Text = "Fussball";
+                        TextBoxSportArt.ReadOnly = true;
                         break;
                     case "Tennis":
                         LabelName.Visible = true;
@@ -54,6 +56,7 @@ namespace WebManschaftsverwaltung.View
                         LabelSportArt.Visible = true;
                         TextBoxSportArt.Visible = true;
                         TextBoxSportArt.Text = "Tennis";
+                        TextBoxSportArt.ReadOnly = true;
                         break;
                     default:
 
@@ -71,6 +74,7 @@ namespace WebManschaftsverwaltung.View
         public void MAnlegen(object sender, EventArgs e)
         {
             Kontroller.neueMannschaft(TextBoxName.Text, TextBoxSportArt.Text);
+            this.BefuelleTabelle();
         }
 
         public void sortMName(object sender, EventArgs e)
@@ -166,7 +170,6 @@ namespace WebManschaftsverwaltung.View
         private DropDownList GenerierePersonenListe(Mannschaft m)
         {
             DropDownList ddl = new DropDownList();
-            ddl.ID = "ddlID";
             switch(m.Sportart)
             {
                 case "Handball":
@@ -174,7 +177,7 @@ namespace WebManschaftsverwaltung.View
                     {
                         if (!(p is Fussballspieler) && !(p is Tennisspieler))
                         {
-                           ddl.Items.Add(new ListItem($"{p.Name}, {p.Alter}, {p.GetType()}", $"{p}"));
+                           ddl.Items.Add(new ListItem($"{p.Name}, {p.Alter}, {p.GetType().Name}", $"{p}"));
                         }
                     }
                     break;
@@ -183,7 +186,7 @@ namespace WebManschaftsverwaltung.View
                     {
                         if (!(p is Handballspieler) && !(p is Tennisspieler))
                         {
-                            ddl.Items.Add(new ListItem($"{p.Name}, {p.Alter}, {p.GetType()}", $"{p}"));
+                            ddl.Items.Add(new ListItem($"{p.Name}, {p.Alter}, {p.GetType().Name}", $"{p}"));
                         }
                     }
                     break;

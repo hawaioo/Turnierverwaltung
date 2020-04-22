@@ -141,7 +141,7 @@ namespace WebManschaftsverwaltung.View
                     break;
             }
             Button2.Enabled = false;
-            Response.Redirect(Request.RawUrl);
+            this.BefuelleTabelle();
         }
 
         protected void sortName(object sender, EventArgs e)
