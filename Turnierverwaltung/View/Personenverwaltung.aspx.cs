@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Turnierverwaltung;
@@ -239,6 +236,21 @@ namespace WebManschaftsverwaltung.View
                 c = new TableCell();
                 c.Text = getDauer(p);
                 r.Cells.Add(c);
+
+                //c = new TableCell();
+                //Button edit = new Button();
+                //c.Controls.Add(edit);
+                //edit.CssClass = "fas fa-pencil btn btn-primary";
+                //edit.Text = "Bearbeiten";
+                //r.Cells.Add(c);
+
+                
+                //c = new TableCell();
+                //Button delete = new Button();
+                //delete.CssClass = "fas fa-trash btn btn-primary";
+                //edit.Text = "Löschen";
+                //c.Controls.Add(delete);
+                //r.Cells.Add(c);
 
                 Table1.Rows.Add(r);
             }
