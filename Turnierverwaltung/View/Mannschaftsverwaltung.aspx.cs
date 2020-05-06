@@ -74,7 +74,7 @@ namespace WebManschaftsverwaltung.View
         public void MAnlegen(object sender, EventArgs e)
         {
             Kontroller.neueMannschaft(TextBoxName.Text, TextBoxSportArt.Text);
-            this.BefuelleTabelle();
+            Response.Redirect(Request.RawUrl);
         }
 
         public void sortMName(object sender, EventArgs e)
