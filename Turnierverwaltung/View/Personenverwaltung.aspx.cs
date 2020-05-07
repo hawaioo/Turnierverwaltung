@@ -15,6 +15,7 @@ namespace WebManschaftsverwaltung.View
         protected void Page_Init(object sender, EventArgs e)
         {
             Kontroller = Global.Kontroller;
+            Kontroller.loadData();
             BefuelleTabelle();
         }
 

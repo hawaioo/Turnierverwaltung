@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,16 +12,38 @@ namespace Turnierverwaltung
     {
         List<Mannschaft> _mannschaften;
         List<Person> _personen;
+
         bool _asc;
         public List<Person> Personen { get => _personen; set => _personen = value; }
         internal List<Mannschaft> Mannschaften { get => _mannschaften; set => _mannschaften = value; }
         public bool Asc { get => _asc; set => _asc = value; }
+        string MyConnectionString;
+
+        public void loadData()
+        {
+            MySqlConnection Conn = new MySqlConnection();
+            Conn.ConnectionString = this.MyConnectionString;
+            Conn.Open();
+
+            string SQLString = "Select * from personen";
+            MySqlCommand cmd = new MySqlCommand(SQLString, Conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                Trainer t = new Trainer();
+            }
+            rdr.Close();
+            Conn.Close();
+        }
+
 
         public Verwalter()
         {
             Asc = true;
             Personen = new List<Person>();
             Mannschaften = new List<Mannschaft>();
+            MyConnectionString = "server=127.0.0.1;database=mannschaftsverwaltung;uid=root;password=''";
         }
 
         public void neuerFussballSpieler(string name, int alter, bool geschlecht, int id, string sportart, string position, int erfolge)
